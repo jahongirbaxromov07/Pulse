@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="/Pulse.jpg">
+    <link rel="icon" href="Pulse.jpg">
 
     <style>
         body {
@@ -55,7 +55,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-semibold d-flex align-items-center gap-2" href="#">
-                <img src="Pulse.jpg" width="42" height="42" class="rounded-circle">
+                <img src="/Pulse.jpg" width="42" height="42" class="rounded-circle">
                 Pulse Medical
             </a>
 
@@ -78,26 +78,104 @@
         </div>
     </nav>
 
-    <!-- TESTS -->
-    <section class="py-5 bg-success bg-opacity-10 position-relative">
-        <div class="container text-center">
+    <!-- TESTS SECTION -->
+    <section class="bg-light">
+        <div class="container">
+            <div class="row g-3 justify-content-center">
+                <!-- Anatomiya Testlari Card -->
+                <div class="col-md-5 col-sm-6">
+                    <a href="test.html" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 text-center p-3 bg-white"
+                            style="transition: transform 0.3s, box-shadow 0.3s; border-radius: 0.75rem;">
+                            <div class="card-body">
+                                <span class="badge bg-success-subtle text-success mb-2 fs-7">
+                                    <i class="bi bi-journal-text me-1"></i> Testlar
+                                </span>
+                                <h5 class="card-title fw-bold mb-1">Anatomiya Testlari</h5>
+                                <p class="card-text text-muted fs-8 mb-2">
+                                    Real testlar orqali bilimlaringizni mustahkamlash.
+                                </p>
+                                <button class="btn btn-success btn-sm mt-1">
+                                    Boshlash <i class="bi bi-arrow-right-circle ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
-            <!-- Main Test Section -->
-            <span class="badge bg-success-subtle text-success mb-2">
-                <i class="bi bi-journal-text me-1"></i> Testlar
-            </span>
-            <h2 class="fw-bold mb-4" style="font-size: 2rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.1);">
-                Anatomiya Testlari
-            </h2>
-            <p class="mb-4 text-muted fs-6 mx-auto" style="max-width: 600px;">
-                Bilimingizni mustahkamlash va test orqali o‘zlashuvni tezlashtirish uchun real testlar.
-            </p>
-            <a href="test.html" class="btn btn-success btn-lg px-5 shadow-sm fw-semibold"
-                style="transition: all 0.3s ease;">
-                Boshlash <i class="bi bi-arrow-right-circle ms-2"></i>
-            </a>
+                <!-- Solve Cases Card -->
+                <div class="col-md-5 col-sm-6">
+                    <a href="cases.html" class="text-decoration-none">
+                        <div class="card h-100 shadow-sm border-0 text-center p-3 bg-white"
+                            style="transition: transform 0.3s, box-shadow 0.3s; border-radius: 0.75rem;">
+                            <div class="card-body">
+                                <span class="badge bg-success-subtle text-success mb-2 fs-7">
+                                    <i class="bi bi-journal-text me-1"></i> Cases
+                                </span>
+                                <h5 class="card-title fw-bold mb-1">Let's Solve Cases</h5>
+                                <p class="card-text text-muted fs-8 mb-2">
+                                    Anatomik va klinik cases orqali bilimlarni chuqurlashtiring.
+                                </p>
+                                <button class="btn btn-success btn-sm mt-1">
+                                    Ko‘rish <i class="bi bi-arrow-right-circle ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
         </div>
     </section>
+
+    <!-- Optional: Hover Effect -->
+    <style>
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .fs-7 {
+            font-size: 0.75rem;
+        }
+
+        .fs-8 {
+            font-size: 0.68rem;
+        }
+    </style>
+
+    <!-- Optional: Hover Effect -->
+    <style>
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+
+    <!--TG Card , ABOUT  -->
+    <section id="about" class="py-2 bg-light">
+        <div class="container">
+
+            <!-- Telegram Promo Card -->
+            <div class="card mb-5 shadow-lg border-0 text-center p-4 reveal"
+                style="border-radius: 12px; background: linear-gradient(135deg, #0088cc, #00c6ff);">
+                <div
+                    class="card-body d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-white">
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="bi bi-telegram fs-1"></i>
+                        <div class="text-start">
+                            <h5 class="fw-bold mb-1">Telegram kanalimizga qo‘shiling!</h5>
+                            <p class="mb-0 small">Eng so‘nggi yangiliklar, testlar va tavsiyalar uchun.</p>
+                        </div>
+                    </div>
+                    <a href="https://t.me/imipulse" target="_blank" class="btn btn-light btn-sm px-4 fw-semibold">
+                        Qo‘shilish <i class="bi bi-arrow-right-circle ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <!-- HERO -->
     <section class="hero py-4 reveal" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
@@ -137,24 +215,6 @@
     <!--TG Card , ABOUT  -->
     <section id="about" class="py-5 bg-light">
         <div class="container">
-
-            <!-- Telegram Promo Card -->
-            <div class="card mb-5 shadow-lg border-0 text-center p-4 reveal"
-                style="border-radius: 12px; background: linear-gradient(135deg, #0088cc, #00c6ff);">
-                <div
-                    class="card-body d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-white">
-                    <div class="d-flex align-items-center gap-3">
-                        <i class="bi bi-telegram fs-1"></i>
-                        <div class="text-start">
-                            <h5 class="fw-bold mb-1">Telegram kanalimizga qo‘shiling!</h5>
-                            <p class="mb-0 small">Eng so‘nggi yangiliklar, testlar va tavsiyalar uchun.</p>
-                        </div>
-                    </div>
-                    <a href="https://t.me/imipulse" target="_blank" class="btn btn-light btn-sm px-4 fw-semibold">
-                        Qo‘shilish <i class="bi bi-arrow-right-circle ms-1"></i>
-                    </a>
-                </div>
-            </div>
 
 
             <!-- Main About Card -->
