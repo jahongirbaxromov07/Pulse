@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Anatomiya Testlari</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .answer-btn {
+            transition: all .2s ease;
+        }
+
+        .answer-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-semibold" href="index.html">
+                <img src="/Pulse.jpg" width="40" height="40" class="rounded-circle">
+                Pulse Medical
+            </a>
+            <a href="index.html" class="btn btn-light btn-sm">
+                <i class="bi bi-house"></i> Bosh sahifa
+            </a>
+        </div>
+    </nav>
+
+    <!-- TEST SELECTION -->
+    <section id="test-selection" class="py-5">
+        <div class="container text-center">
+            <span class="badge bg-primary-subtle text-primary mb-3">
+                <i class="bi bi-journal-text"></i> Testlar
+            </span>
+            <h1 class="fw-bold mb-4">Anatomiya Testlari</h1>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <div class="text-center">
+                    <button onclick="startTest('test1')" class="btn btn-success btn-lg px-4">
+                        <i class="bi bi-clipboard-check"></i> Test 1
+                    </button>
+                    <div class="text-muted mt-1 small">
+                        <i class="bi bi-eye"></i> <span id="view-test1">0</span> marta yechildi
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button onclick="startTest('test2')" class="btn btn-success btn-lg px-4">
+                        <i class="bi bi-clipboard-check"></i> Test 2
+                    </button>
+                    <div class="text-muted mt-1 small">
+                        <i class="bi bi-eye"></i> <span id="view-test2">0</span> marta yechildi
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button onclick="startTest('super')" class="btn btn-warning btn-lg px-4 text-white">
+                        <i class="bi bi-lightning-charge"></i> Super Test
+                    </button>
+                    <div class="text-muted mt-1 small">
+                        <i class="bi bi-eye"></i> <span id="view-super">0</span> marta yechildi
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TEST SCREEN -->
+    <section class="pb-5">
+        <div class="container">
+            <div id="test-screen" class="card shadow-lg border-0 mx-auto d-none" style="max-width: 700px;">
+                <div class="card-body p-4 position-relative">
+
+                    <!-- STOP -->
+                    <button onclick="stopTest()" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-6">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 id="test-title" class="fw-bold mb-0"></h5>
+                        <span id="timer" class="badge bg-secondary fs-6"></span>
+                    </div>
+
+                    <p id="question-container" class="fs-5 fw-medium mb-4"></p>
+
+                    <div id="answer-buttons" class="d-grid gap-3"></div>
+
+                    <div id="result" class="alert alert-success text-center fw-bold fs-5 mt-4 d-none">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const tests = {
+            test1: Array.from({ length: 10 }, (_, i) => ({
+                q: `Test 1 — Savol ${i + 1}`,
+                a: ["Variant A", "Variant B", "Variant C", "Variant D"],
+                correct: Math.floor(Math.random() * 4)
+            })),
+
+
+            test2: [
+                {
+                    q: "1. Bo‘g‘imni innervatsiyalayotgan nerv nima qiladi?",
+                    a: [
+                        "Faqat mushakni innervatsiyalaydi",
+                        "Faqat terini innervatsiyalaydi",
+                        "Harakatlantiruvchi mushak va tegishli teri hududini ham innervatsiyalaydi (Hilton qonuni)",
+                        "Faqat sinovial membrana orqali impuls yetkazadi"
+                    ],
+                    correct: 2
+                },
+                {
+                    q: "2. Fibroz bo‘g‘imlar bo‘shlig‘i bormi?",
+                    a: [
+                        "Yo‘q, kam harakatchan",
+                        "Ha, keng bo‘shliq mavjud",
+                        "Faqat sinovial membrana orqali bo‘shliq hosil bo‘ladi",
+                        "Faqat yassi suyaklar orasida bo‘shliq mavjud"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "3. Choklar qayerda uchraydi?",
+                    a: [
+                        "Bosh yassi suyaklari orasida",
+                        "Barmoqlararo bo‘g‘imlarda",
+                        "Qovurg‘a va sternumda",
+                        "Umurtqa pog‘onasi segmentlarida"
+                    ],
+                    correct: 2
+                },
+                {
+                    q: "4. Sindesmoz misoli?",
+                    a: [
+                        "Pastki tibiofibular va timpanostapedial",
+                        "Proksimal tibiofibular",
+                        "Intervertebral disklar",
+                        "Yelka bo‘g‘imi"
+                    ],
+                    correct: 3
+                },
+                {
+                    q: "5. Sinxondroz (birlamchi to‘g’ayli) asosiy tuzilishi?",
+                    a: [
+                        "Gialin to‘g’ay, harakatsiz/kuchsiz, epifizial plastinka bilan bog‘liq",
+                        "Gialin to‘g’ay, yuqori harakatchan",
+                        "Fibroz to‘g’ay bilan qoplangan",
+                        "Sinovial kapsula bilan himoyalangan"
+                    ],
+                    correct: 0
+                },
+                {
+                    q: "6. Simfizis (ikkilamchi to‘g’ayli) misoli?",
+                    a: [
+                        "Qov simfizi, intervertebral disklar",
+                        "Proksimal tibiofibular bo‘g‘im",
+                        "Atlantoaksial bo‘g‘im",
+                        "Yelka bo‘g‘imi"
+                    ],
+                    correct: 3
+                },
+                {
+                    q: "7. Sinovial bo‘g‘imning asosiy 4 qismi?",
+                    a: [
+                        "Bo‘g‘im bo‘shlig‘i, gialin to‘g’ay, sinovial membrana, kapsula",
+                        "Bo‘g‘im bo‘shlig‘i, fibroz to‘g’ay, kapsula, ligament",
+                        "Gialin to‘g’ay, periost, ligament, kapsula",
+                        "Bo‘g‘im bo‘shlig‘i, gialin to‘g’ay, periost, tendon"
+                    ],
+                    correct: 2
+                },
+                {
+                    q: "8. Yassi bo‘g‘im xususiyati va misoli?",
+                    a: [
+                        "Sirpanish; proksimal tibiofibular, intertarsal, interkarpal va boshqalar",
+                        "Faqat aylanma; yuqori/pastki radioulnar",
+                        "Bukish va yozish; bilak, to‘piq, tizza",
+                        "Fleksiya va ekstenziya; kaft-barmoq"
+                    ],
+                    correct: 1
+                },
+                {
+                    q: "9. Ginglimus bo‘g‘im harakati?",
+                    a: [
+                        "Bukish va yozish; bilak, to‘piq, barmoqlararo",
+                        "Faqat aylanma; atlantoaksial",
+                        "Sirpanish; intertarsal",
+                        "Fleksiya va adduksiya; yelka bo‘g‘imi"
+                    ],
+                    correct: 0
+                },
+                {
+                    q: "10. Troxoid bo‘g‘im harakati?",
+                    a: [
+                        "Faqat aylanma; yuqori/pastki radioulnar, atlantoaksial",
+                        "Bukish va yozish; tizza va kaft",
+                        "Sirpanish; interkarpal",
+                        "Fleksiya, ekstenziya, adduksiya; yelka"
+                    ],
+                    correct: 3
+                }
+            ],
+
+            super: Array.from({ length: 10 }, (_, i) => ({
+                q: `Super Test — Savol ${i + 1}`,
+                a: ["Variant A", "Variant B", "Variant C", "Variant D"],
+                correct: Math.floor(Math.random() * 4)
+            }))
+        };
+
+
+        function updateViews(testName) {
+            let views = localStorage.getItem(`views_${testName}`);
+            views = views ? parseInt(views) + 1 : 1;
+            localStorage.setItem(`views_${testName}`, views);
+            document.getElementById(`view-${testName}`).innerText = views;
+        }
+
+        function loadViews() {
+            ['test1', 'test2', 'super'].forEach(test => {
+                const views = localStorage.getItem(`views_${test}`) || 0;
+                document.getElementById(`view-${test}`).innerText = views;
+            });
+        }
+
+        function startTest(testName) {
+            updateViews(testName); // 👁 view +1
+
+            currentTest = tests[testName];
+            currentIndex = 0;
+            score = 0;
+
+            document.getElementById('test-selection').classList.add('d-none');
+            document.getElementById('test-screen').classList.remove('d-none');
+            document.getElementById('result').classList.add('d-none');
+
+            showQuestion();
+        }
+
+        window.onload = loadViews;
+
+
+        let currentTest = [];
+        let currentIndex = 0;
+        let score = 0;
+        let timer;
+        let timeLeft = 20;
+
+
+        function showQuestion() {
+            if (currentIndex >= currentTest.length) {
+                document.getElementById('result').innerText =
+                    `Natija: ${score} / ${currentTest.length}`;
+                document.getElementById('result').classList.remove('d-none');
+                return;
+            }
+
+            const q = currentTest[currentIndex];
+            document.getElementById('test-title').innerText =
+                `Savol ${currentIndex + 1}`;
+            document.getElementById('question-container').innerText = q.q;
+
+            const answerButtons = document.getElementById('answer-buttons');
+            answerButtons.innerHTML = '';
+
+            q.a.forEach((ans, index) => {
+                const btn = document.createElement('button');
+                btn.innerHTML = `<i class="bi bi-circle"></i> ${ans}`;
+                btn.className = 'btn btn-outline-primary btn-lg text-start answer-btn';
+                btn.onclick = () => selectAnswer(index);
+                answerButtons.appendChild(btn);
+            });
+
+            clearInterval(timer);
+            timeLeft = 20;
+            document.getElementById('timer').innerText = `⏱ ${timeLeft}s`;
+
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = `⏱ ${timeLeft}s`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    selectAnswer(-1);
+                }
+            }, 1000);
+        }
+
+        function selectAnswer(index) {
+            clearInterval(timer);
+            if (index === currentTest[currentIndex].correct) score++;
+            currentIndex++;
+            showQuestion();
+        }
+
+        function stopTest() {
+            if (confirm("Rostdan testni tugatmoqchimisiz?")) {
+                clearInterval(timer);
+                document.getElementById('test-screen').classList.add('d-none');
+                document.getElementById('test-selection').classList.remove('d-none');
+            }
+        }
+
+        // Testni bosganingizda view +1 qilish
+        function updateGlobalViews(testName) {
+            const ref = db.ref(`views/${testName}`);
+
+            // Transaction bilan +1
+            ref.transaction(current => (current || 0) + 1);
+
+            // Real-time ko‘rsatish
+            ref.on('value', snapshot => {
+                document.getElementById(`view-${testName}`).innerText = snapshot.val() || 0;
+            });
+        }
+
+        // Sahifa yuklanganda barcha viewlarni real-time ko‘rsatish
+        ['test1', 'test2', 'super'].forEach(test => updateGlobalViews(test));
+
+        function startTest(testName) {
+            // Global view +1
+            const ref = db.ref(`views/${testName}`);
+            ref.transaction(current => (current || 0) + 1);
+
+            // Testni boshlash
+            currentTest = tests[testName];
+            currentIndex = 0;
+            score = 0;
+
+            document.getElementById('test-selection').classList.add('d-none');
+            document.getElementById('test-screen').classList.remove('d-none');
+            document.getElementById('result').classList.add('d-none');
+
+            showQuestion();
+        }
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Firebase App -->
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <script>
+
+        // Firebase konfiguratsiyasi
+        const firebaseConfig = {
+            apiKey: "AIzaSyCCqvgW8yTfmTHglz3siSLfLJo6NjXd_ws",
+            authDomain: "pulse-5f61d.firebaseapp.com",
+            databaseURL: "https://pulse-5f61d-default-rtdb.firebaseio.com",
+            projectId: "pulse-5f61d",
+            storageBucket: "pulse-5f61d.firebasestorage.app",
+            messagingSenderId: "359964012652",
+            appId: "1:359964012652:web:10722fdfb19d41a1052849",
+            measurementId: "G-QX686G4TT9"
+        };
+
+        // Firebase initialize
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Global view funksiyasi
+        function updateGlobalViews(testName) {
+            const ref = db.ref(`views/${testName}`);
+            ref.transaction(current => (current || 0) + 0);
+            ref.on('value', snapshot => {
+                document.getElementById(`view-${testName}`).innerText = snapshot.val() || 0;
+            });
+        }
+
+        ['test1', 'test2', 'super'].forEach(test => updateGlobalViews(test));
+    </script>
+
+</body>
+
+</html>
