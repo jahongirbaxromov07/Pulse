@@ -27,6 +27,108 @@
         .answer-btn:hover {
             transform: translateY(-2px);
         }
+
+        .test-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 16px 10px 38px;
+            text-align: center;
+            cursor: pointer;
+            height: 100%;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .test-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, .12);
+        }
+
+        .test-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 22px;
+        }
+
+        .test-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .test-meta {
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .question-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            padding: 6px 10px;
+
+            background: #0d6efd;
+            /* bootstrap primary – professional */
+            color: #fff;
+
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.3px;
+
+            border-radius: 0 0 14px 14px;
+
+            /* animation */
+            transform: translateX(-100%);
+            animation: slideInLeft 0.6s ease-out forwards;
+            animation-delay: 0.2s;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #0d6efd, #084298);
+            box-shadow: 0 6px 20px rgba(13, 110, 253, 0.25);
+        }
+
+        .navbar-brand {
+            letter-spacing: 0.4px;
+        }
+
+        .navbar-brand img {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .navbar .btn-light {
+            font-weight: 600;
+            border-radius: 999px;
+            padding: 4px 14px;
+            transition: all 0.25s ease;
+        }
+
+        .navbar .btn-light:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
     </style>
 </head>
 
@@ -46,130 +148,138 @@
     </nav>
 
     <!-- TEST SELECTION -->
-    <section id="test-selection" class="py-5 bg-light">
+    <section id="test-selection" class="py-3 bg-light">
         <div class="container">
+            <div class="accordion border-0 shadow-sm" id="anatomyAccordion">
 
-            <div class="text-center mb-4">
-                <span class="badge bg-primary-subtle text-primary px-3 py-2 mb-2">
-                    <i class="bi bi-journal-text"></i> Testlar
-                </span>
-                <h2 class="fw-bold">Anatomiya Testlari</h2>
-                <p class="text-muted">Bilimingizni mustahkamlang</p>
-            </div>
-
-            <div class="accordion shadow-sm" id="anatomyAccordion">
-
-                <!-- ANATOMY HEADER -->
-                <div class="accordion-item">
+                <div class="accordion-item border-0">
                     <h2 class="accordion-header">
-                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse"
+                        <button class="accordion-button fw-semibold py-2" type="button" data-bs-toggle="collapse"
                             data-bs-target="#anatomyTests" aria-expanded="true">
-                            <i class="bi bi-heart-pulse me-2 text-danger"></i> Anatomiya
+
+                            <i class="bi bi-heart-pulse me-2 text-danger"></i> Anatomiya Testlari
                         </button>
                     </h2>
 
-                    <!-- OPENED BY DEFAULT -->
                     <div id="anatomyTests" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
+                        <div class="accordion-body pt-3">
 
-                            <!-- FIRST 2 TESTS (VISIBLE) -->
-                            <div class="row g-3 mb-3">
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Suyaklar</h5>
-                                            <button onclick="startTest('test1')" class="btn btn-success w-100">
-                                                Boshlash
-                                            </button>
-                                            <small class="text-muted d-block mt-2">
-                                                <i class="bi bi-eye"></i>
-                                                <span id="view-test1">0</span> marta yechildi
-                                            </small>
+                            <div class="row g-3">
+
+                                <!-- Suyaklar -->
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('test1')">
+                                        <div class="test-icon bg-primary-subtle text-primary">
+                                            <i class="bi bi-bandaid fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">Suyaklar</div>
+                                        <div class="test-meta text-muted">
+                                            <i class="bi bi-eye me-1"></i>
+                                            <span id="view-test1">0</span> marta yechildi
+                                        </div>
+                                        <div class="question-footer">
+                                            54 question
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Bo'g'imlar</h5>
-                                            <button onclick="startTest('test2')" class="btn btn-success w-100">
-                                                Boshlash
-                                            </button>
-                                            <small class="text-muted d-block mt-2">
-                                                <i class="bi bi-eye"></i>
-                                                <span id="view-test2">0</span> marta yechildi
-                                            </small>
+                                <!-- Bo‘g‘imlar -->
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('test2')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-diagram-3 fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">Bo‘g‘imlar</div>
+                                        <div class="test-meta text-muted">
+                                            <i class="bi bi-eye me-1"></i>
+                                            <span id="view-test2">0</span> marta yechildi
+                                        </div>
+                                        <div class="question-footer">
+                                            54 question
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- MORE TESTS (COLLAPSE) -->
-                            <div class="collapse" id="moreTests">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="card h-100 border-0 shadow-sm">
-                                            <div class="card-body text-center">
-                                                <h5 class="card-title">Mushaklar</h5>
-                                                <button onclick="startTest('super')"
-                                                    class="btn btn-warning text-white w-100">
-                                                    Super Boshlash
-                                                </button>
-                                                <small class="text-muted d-block mt-2">
-                                                    <i class="bi bi-eye"></i>
-                                                    <span id="view-super">0</span> marta yechildi
-                                                </small>
-                                            </div>
+                                <!-- Mushaklar -->
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('super')">
+                                        <div class="test-icon bg-warning-subtle text-warning">
+                                            <i class="bi bi-lightning-charge fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">Mushaklar</div>
+                                        <div class="test-meta text-muted">
+                                            <i class="bi bi-eye me-1"></i>
+                                            <span id="view-super">0</span> marta yechildi
+                                        </div>
+                                        <div class="question-footer">
+                                            54 question
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- SHOW MORE BUTTON -->
-                            <div class="text-center mt-4">
-                                <button class="btn btn-outline-primary" data-bs-toggle="collapse"
-                                    data-bs-target="#moreTests">
-                                    <i class="bi bi-chevron-down"></i> Ko‘proq ko‘rsatish
-                                </button>
+                                <!-- Qo‘shimcha Test -->
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('extra')">
+                                        <div class="test-icon bg-danger-subtle text-danger">
+                                            <i class="bi bi-heart-pulse fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">Qo‘shimcha</div>
+                                        <div class="test-meta text-muted">
+                                            <i class="bi bi-eye me-1"></i>
+                                            <span id="view-extra">0</span> marta yechildi
+                                        </div>
+                                        <div class="question-footer">
+                                            54 question
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
 
         </div>
     </section>
 
 
-    <!-- TEST SCREEN -->
-    <section class="pb-5">
+    <section class="pb-5 mt-2">
         <div class="container">
-            <div id="test-screen" class="card shadow-lg border-0 mx-auto d-none" style="max-width: 700px;">
-                <div class="card-body p-4 position-relative">
+            <div id="test-screen" class="card shadow-lg border-0 mx-auto d-none"
+                style="max-width: 600px; border-radius: 0.75rem; transition: all 0.3s;">
+                <div class="card-body p-3 position-relative">
 
-                    <!-- STOP -->
-                    <button onclick="stopTest()" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-6">
+                    <!-- STOP BUTTON -->
+                    <button onclick="stopTest()"
+                        class="btn btn-sm btn-danger position-absolute top-0 end-0 m-3 shadow-sm"
+                        style="transition: transform 0.2s;">
                         <i class="bi bi-x-lg"></i>
                     </button>
 
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 id="test-title" class="fw-bold mb-0"></h5>
-                        <span id="timer" class="badge bg-secondary fs-6"></span>
+                    <!-- HEADER -->
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 id="test-title" class="fw-bold mb-0 fs-6 text-primary"></h5>
+                        <span id="timer" class="badge bg-secondary fs-7 me-5" style="font-weight:500;"></span>
                     </div>
 
-                    <p id="question-container" class="fs-5 fw-medium mb-4"></p>
+                    <!-- QUESTION -->
+                    <p id="question-container" class="fs-6 fw-medium mb-3" style="line-height:1.4;"></p>
 
-                    <div id="answer-buttons" class="d-grid gap-3"></div>
+                    <!-- ANSWERS -->
+                    <div id="answer-buttons" class="d-grid gap-2"></div>
 
-                    <div id="result" class="alert alert-success text-center fw-bold fs-5 mt-4 d-none">
+                    <!-- RESULT -->
+                    <div id="result" class="alert alert-success text-center fw-bold fs-6 mt-3 d-none"
+                        style="border-radius:0.5rem; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <script src="questions.js"></script>
 
     <script>
