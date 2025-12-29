@@ -27,6 +27,126 @@
         .answer-btn:hover {
             transform: translateY(-2px);
         }
+
+        .test-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 16px 10px 38px;
+            text-align: center;
+            cursor: pointer;
+            height: 100%;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .collectioncard {
+            background: #f1d00f;
+            border-radius: 14px;
+            padding: 16px 10px 38px;
+            text-align: center;
+            cursor: pointer;
+            height: 100%;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 18px rgba(255, 174, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .test-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        .test-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-size: 1.25rem;
+        }
+
+        .test-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .test-meta {
+            font-size: 0.75rem;
+            color: #6c757d;
+        }
+
+        .test-meta i {
+            margin-right: 4px;
+        }
+
+
+        .question-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            padding: 6px 10px;
+
+            background: #0d6efd;
+            /* bootstrap primary – professional */
+            color: #fff;
+
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.3px;
+
+            border-radius: 0 0 14px 14px;
+
+            /* animation */
+            transform: translateX(-100%);
+            animation: slideInLeft 0.6s ease-out forwards;
+            animation-delay: 0.2s;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #0d6efd, #084298);
+            box-shadow: 0 6px 20px rgba(13, 110, 253, 0.25);
+        }
+
+        .navbar-brand {
+            letter-spacing: 0.4px;
+        }
+
+        .navbar-brand img {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .navbar .btn-light {
+            font-weight: 600;
+            border-radius: 999px;
+            padding: 4px 14px;
+            transition: all 0.25s ease;
+        }
+
+        .navbar .btn-light:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
     </style>
 </head>
 
@@ -46,78 +166,190 @@
     </nav>
 
     <!-- TEST SELECTION -->
-    <section id="test-selection" class="py-5 bg-light">
+    <section id="test-selection" class="py-3 bg-light">
         <div class="container">
 
-            <div class="text-center mb-4">
-                <span class="badge bg-primary-subtle text-primary px-3 py-2 mb-2">
-                    <i class="bi bi-journal-text"></i> Cases
-                </span>
-                <h2 class="fw-bold">Clinical cases</h2>
-                <p class="text-muted">test yourself</p>
-            </div>
-
             <div class="accordion shadow-sm" id="anatomyAccordion">
-
-                <!-- ANATOMY HEADER -->
-                <div class="accordion-item">
+                <div class="accordion-item border-0">
                     <h2 class="accordion-header">
-                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse"
+                        <button class="accordion-button fw-semibold py-2" type="button" data-bs-toggle="collapse"
                             data-bs-target="#anatomyTests" aria-expanded="true">
-                            <i class="bi bi-heart-pulse me-2 text-danger"></i> Anatomy
+                            <i class="bi bi-heart-pulse me-2 text-danger"></i> Anatomy Cases
                         </button>
                     </h2>
 
-                    <!-- OPENED BY DEFAULT -->
                     <div id="anatomyTests" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
+                        <div class="accordion-body pt-3">
 
-                            <!-- FIRST 2 TESTS (VISIBLE) -->
-                            <div class="row g-3 mb-3">
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">5 cases</h5>
-                                            <button onclick="startTest('cases')" class="btn btn-success w-100">
-                                                Start
-                                            </button>
-                                            <small class="text-muted d-block mt-2">
-                                                <i class="bi bi-eye"></i>
-                                                <span id="view-cases">0</span> solved
-                                            </small>
+                            <div class="row g-3">
+
+                                <!-- TEST CARD -->
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card position-relative" onclick="startTest('cases')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical"></i>
+                                        </div>
+                                        <div class="test-title">Introduction</div>
+                                        <div class="test-meta">
+                                            <i class="bi bi-eye"></i>
+                                            <span id="view-cases">0</span> solved
+                                        </div>
+                                        <div class="question-footer">
+                                            14 question
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('chapter2')">
+                                        <div class="test-icon bg-primary-subtle text-primary">
+                                            <i class="bi bi-person-standing"></i>
+                                        </div>
+                                        <div class="test-title">Back</div>
+                                        <div class="test-meta">
+                                            <i class="bi bi-eye"></i>
+                                            <span id="view-chapter2">0</span> solved
+                                        </div>
+                                        <div class="question-footer">
+                                            36 question
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-
-            </div>
-            <section id="about" class="py-2 bg-light">
-                <div class="container">
-
-                    <!-- Telegram Promo Card -->
-                    <div class="card mb-5 shadow-lg border-0 text-center p-4 reveal"
-                        style="border-radius: 12px; background: linear-gradient(135deg, #0088cc, #00c6ff);">
-                        <div
-                            class="card-body d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-white">
-                            <div class="d-flex align-items-center gap-3">
-                                <i class="bi bi-telegram fs-1"></i>
-                                <div class="text-start">
-                                    <h5 class="fw-bold mb-1">Telegram kanalimizga qo‘shiling!</h5>
-                                    <p class="mb-0 small">Eng so‘nggi yangiliklar, testlar va tavsiyalar uchun.</p>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('chapter3')">
+                                        <div class="test-icon bg-danger-subtle text-danger">
+                                            <i class="bi bi-lungs"></i>
+                                        </div>
+                                        <div class="test-title">Thorax</div>
+                                        <div class="test-meta">
+                                            <i class="bi bi-eye"></i>
+                                            <span id="view-chapter3">0</span> solved
+                                        </div>
+                                        <div class="question-footer">
+                                            46 question
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('chapter4')">
+                                        <div class="test-icon bg-warning-subtle text-warning">
+                                            <i class="bi bi-activity"></i>
+                                        </div>
+                                        <div class="test-title">Abdomen</div>
+                                        <div class="test-meta">
+                                            <i class="bi bi-eye"></i>
+                                            <span id="view-chapter4">0</span> solved
+                                        </div>
+                                        <div class="question-footer">
+                                            54 question
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-md-3">
+                                    <div class="collectioncard" onclick="startTest('cases1')">
+                                        <div class="test-icon bg-warning-subtle text-warning">
+                                            <i class="bi bi-collection"></i>
+                                        </div>
+                                        <div class="test-title">Cases 1</div>
+                                        <div class="test-meta">
+                                            <i class="bi bi-eye"></i>
+                                            <span id="view-cases1">0</span> solved
+                                        </div>
+                                        <div class="question-footer">
+                                            5 questions
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="collectioncard" onclick="startTest('cases2')">
+                                        <div class="test-icon bg-warning-subtle text-warning">
+                                            <i class="bi bi-collection"></i>
+                                        </div>
+                                        <div class="test-title">Cases 2</div>
+                                        <div class="test-meta">
+                                            <i class="bi bi-eye"></i>
+                                            <span id="view-cases2">0</span> solved
+                                        </div>
+                                        <div class="question-footer">
+                                            5 questions
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <a href="https://t.me/imipulse" target="_blank"
-                                class="btn btn-light btn-sm px-4 fw-semibold">
-                                Qo‘shilish <i class="bi bi-arrow-right-circle ms-1"></i>
-                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <!-- Statistics Counter Section -->
+        <section class="py-5 bg-white">
+            <div class="container">
+                <div class="row text-center g-4">
+
+                    <div class="col-6 col-md-4 reveal">
+                        <div class="p-4 shadow-sm rounded-4">
+                            <i class="bi bi-people-fill fs-1 text-primary mb-2"></i>
+                            <h2 class="fw-bold counter" data-target="320">0</h2>
+                            <p class="text-muted mb-0">Foydalanuvchilar</p>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 reveal">
+                        <div class="p-4 shadow-sm rounded-4">
+                            <i class="bi bi-journal-text fs-1 text-success mb-2"></i>
+                            <h2 class="fw-bold counter" data-target="141">0</h2>
+                            <p class="text-muted mb-0">Caselar</p>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4 reveal">
+                        <div class="p-4 shadow-sm rounded-4">
+                            <i class="bi bi-clipboard-check fs-1 text-warning mb-2"></i>
+                            <h2 class="fw-bold counter" data-target="45">0</h2>
+                            <p class="text-muted mb-0">Testlar</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 reveal">
+                        <div class="p-4 shadow-sm rounded-4">
+                            <i class="bi bi-book-fill fs-1 text-warning mb-2"></i>
+                            <h2 class="fw-bold counter" data-target="5">0</h2>
+                            <p class="text-muted mb-0">Manbalar</p>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+        <section id="about" class="py-2 bg-light">
+            <div class="container">
+
+                <!-- Telegram Promo Card -->
+                <div class="card mb-5 shadow-lg border-0 text-center p-4 reveal"
+                    style="border-radius: 12px; background: linear-gradient(135deg, #0088cc, #00c6ff);">
+                    <div
+                        class="card-body d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-white">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-telegram fs-1"></i>
+                            <div class="text-start">
+                                <h5 class="fw-bold mb-1">Join our Telegram channel!</h5>
+                                <p class="mb-0 small">For the latest news,test and clinical cases</p>
+                            </div>
+                        </div>
+                        <a href="https://t.me/imipulse" target="_blank" class="btn btn-light btn-sm px-4 fw-semibold">
+                            Join <i class="bi bi-arrow-right-circle ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </section>
 
@@ -157,10 +389,42 @@
         </div>
     </section>
 
+    <script>
+        const counters = document.querySelectorAll('.counter');
+        let counterStarted = false;
+
+        const counterObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !counterStarted) {
+                    counterStarted = true;
+                    counters.forEach(counter => {
+                        const target = +counter.dataset.target;
+                        let count = 0;
+                        const step = Math.ceil(target / 150);
+
+                        const update = () => {
+                            count += step;
+                            if (count < target) {
+                                counter.innerText = count;
+                                requestAnimationFrame(update);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        update();
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelector('.counter') &&
+            counterObserver.observe(document.querySelector('.counter'));
+    </script>
 
     <script src="cases.js"></script>
 
     <script>
+
         function shuffle(array) {
             return [...array]
                 .map(value => ({ value, sort: Math.random() }))
@@ -185,6 +449,11 @@
 
         const tests = {
             cases: randomizeTest(TEST_QUESTIONS.cases),
+            chapter2: randomizeTest(TEST_QUESTIONS.chapter2),
+            chapter3: randomizeTest(TEST_QUESTIONS.chapter3),
+            chapter4: randomizeTest(TEST_QUESTIONS.chapter4),
+            cases1: randomizeTest(TEST_QUESTIONS.cases1),
+            cases2: randomizeTest(TEST_QUESTIONS.cases2),
         };
 
 
@@ -197,7 +466,7 @@
         }
 
         function loadViews() {
-            ['test1', 'test2', 'super', 'cases'].forEach(test => {
+            ['cases', 'chapter2', 'chapter3', 'chapter4', 'cases1', 'cases2'].forEach(test => {
                 const views = localStorage.getItem(`views_${test}`) || 0;
                 document.getElementById(`view-${test}`).innerText = views;
             });
@@ -325,7 +594,7 @@
         }
 
         // Sahifa yuklanganda barcha viewlarni real-time ko‘rsatish
-        ['test1', 'test2', 'super', 'cases'].forEach(test => updateGlobalViews(test));
+        ['cases', 'chapter2', 'chapter3', 'chapter4', 'cases1', 'cases2'].forEach(test => updateGlobalViews(test));
 
         function startTest(testName) {
             // Global view +1
@@ -343,6 +612,9 @@
 
             showQuestion();
         }
+
+
+        // Agar kerak bo‘lsa, real-time update bo‘lganda ham chaqirish mumkin
 
     </script>
 
@@ -379,10 +651,9 @@
             });
         }
 
-        ['test1', 'test2', 'super', 'cases'].forEach(test => updateGlobalViews(test));
+        ['cases', 'chapter2', 'chapter3', 'chapter4', 'cases1', 'cases2'].forEach(test => updateGlobalViews(test));
     </script>
 
 </body>
-
 
 </html>
