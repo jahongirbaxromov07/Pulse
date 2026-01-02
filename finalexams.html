@@ -333,7 +333,7 @@
         let currentIndex = 0;
         let score = 0;
         let timer;
-        let timeLeft = 25;
+        let timeLeft = 30;
 
 
         function showQuestion() {
@@ -361,7 +361,7 @@
             });
 
             clearInterval(timer);
-            timeLeft = 20;
+            timeLeft = 30;
             document.getElementById('timer').innerText = `⏱ ${timeLeft}s`;
 
             timer = setInterval(() => {
@@ -490,3 +490,4 @@
 
 
 </html>
+
